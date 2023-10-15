@@ -20,7 +20,8 @@ window.addEventListener('load', () => {
     setup() { },
     template: `
 <User v-slot:default="dataFromChild">
-  <User v-slot:default="dataFromChild">{{ dataFromChild }}</User>
+  <p>{{ dataFromChild.user.firstName }} {{ dataFromChild.user.lastName }}</p>
+  <p>{{ dataFromChild.user.age}}/{{ dataFromChild.user.sex}}</p>
 </User>`,
     components: {
       User,
