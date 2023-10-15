@@ -13,7 +13,7 @@ window.addEventListener('load', () => {
     },
     template: `
 <span>
-  <slot v-bind:user="user" v-bind:message="message">{{ user.lastName }}</slot>
+  <slot :user="user" :message="message">{{ user.lastName }}</slot>
 </span>
 `
   }
