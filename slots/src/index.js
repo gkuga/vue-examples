@@ -2,26 +2,26 @@ window.addEventListener('load', () => {
   const { createApp, ref } = Vue
   const User = {
     setup() {
-      let user = ref({
+      const user = ref({
         firstName: 'John',
         lastName: 'Doe',
         age: '25',
         sex: '男性',
       })
-      return { user }
+      const message = ref('Hello Scoped Slot')
+      return { user, message }
     },
     template: `
 <span>
-  <slot v-bind:user="user">{{ user.lastName }}</slot>
+  <slot v-bind:user="user" v-bind:message="message">{{ user.lastName }}</slot>
 </span>
 `
   }
   app = createApp({
     setup() { },
     template: `
-<User v-slot:default="{ user }">
-  <p>{{ user.firstName }} {{ user.lastName }}</p>
-  <p>{{ user.age}}/{{ user.sex}}</p>
+<User v-slot="dataFromChild">
+  <p>{{ dataFromChild }}</p>
 </User>`,
     components: {
       User,
