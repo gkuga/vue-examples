@@ -12,15 +12,14 @@ window.addEventListener('load', () => {
     },
     template: `
 <span>
-  <slot>{{ user.lastName }}</slot>
+  <slot v-bind:user="user">{{ user.lastName }}</slot>
 </span>
 `
   }
   app = createApp({
     setup() { },
     template: `
-<User>
-</User>`,
+<User></User>`,
     components: {
       User,
     },
