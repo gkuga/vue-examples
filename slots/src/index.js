@@ -14,9 +14,9 @@ window.addEventListener('load', () => {
     setup() {},
     template: `
 <User>
-  <template v-slot:default>John doe</template>
-  <template v-slot:age>25</template>
-  <template v-slot:sex>男性</template>
+  <template #default>John doe</template>
+  <template #age>25</template>
+  <template #sex>男性</template>
 </User>`,
     components: {
       User,
