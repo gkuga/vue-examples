@@ -1,35 +1,52 @@
 window.addEventListener('load', () => {
-	const { createApp, ref } = Vue
-	const Menu = {
-		setup() {
-			const display = ref(true)
-			const onClick = () => (display.value = !display.value);
-			return { display, onClick }
-		},
-		template: `
-<div>
-	<slot name="activator" v-bind:onClick="onClick"></slot>
-  <slot v-if="display"></slot>
-</div>
-`
-	}
-	app = createApp({
+	const { createApp, defineProps, ref } = Vue
+	const Table = {
+		props: ['header', 'items'],
 		setup() { },
 		template: `
-<Menu>
-  <template v-slot:activator="{ onClick }">
-    <button @click="onClick">Click</button>
-  </template>
-  <ul>
-    <li>List1</li>
-    <li>List2</li>
-    <li>List3</li>
-  </ul>
-</Menu>
-`,
-		components: {
-			Menu,
+<table border="1">
+  <thead>
+    <tr>
+      <th v-for="row_name in header" :key="row_name">{{ row_name }}</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr v-for="(item,index) in items" :key="index">
+      <td v-for="(value,index) in item" :key="index">{{ value }}</td>
+    </tr>
+  </tbody>
+</table>
+`
+	}
+	const app = createApp({
+		setup() {
+			const header = ['ID', 'FIRSTNAME', 'LASTNAME', 'EMAIL'];
+			const items = [
+				{
+					id: 1,
+					firstName: 'John',
+					lastName: 'Doe',
+					email: 'john@example.com',
+				},
+				{
+					id: 2,
+					firstName: 'Kevin',
+					lastName: 'Wood',
+					email: 'kevin@example.com',
+				},
+				{
+					id: 3,
+					firstName: 'Harry',
+					lastName: 'Bosch',
+					email: 'harry@test.com',
+				},
+			];
+			return { header, items }
 		},
-	})
+		template: `<Table :header="header" :items="items"></Table>`,
+		components: {
+			Table,
+		},
+	});
 	app.mount('#app')
 });
