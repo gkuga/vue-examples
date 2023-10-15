@@ -19,7 +19,9 @@ window.addEventListener('load', () => {
   app = createApp({
     setup() { },
     template: `
-<User></User>`,
+<User v-slot:default="dataFromChild">
+  <User v-slot:default="dataFromChild">{{ dataFromChild }}</User>
+</User>`,
     components: {
       User,
     },
