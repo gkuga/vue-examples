@@ -19,9 +19,9 @@ window.addEventListener('load', () => {
   app = createApp({
     setup() { },
     template: `
-<User v-slot:default="dataFromChild">
-  <p>{{ dataFromChild.user.firstName }} {{ dataFromChild.user.lastName }}</p>
-  <p>{{ dataFromChild.user.age}}/{{ dataFromChild.user.sex}}</p>
+<User v-slot:default="{ user }">
+  <p>{{ user.firstName }} {{ user.lastName }}</p>
+  <p>{{ user.age}}/{{ user.sex}}</p>
 </User>`,
     components: {
       User,
